@@ -1,0 +1,38 @@
+﻿<Window x:Class="Win10APIInWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        xmlns:local="clr-namespace:Win10APIInWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*" />            
+            <ColumnDefinition Width="20*" />
+        </Grid.ColumnDefinitions>
+
+        <xamlHost:WindowsXamlHost Grid.Column="0" Margin="5"
+                                  x:Name="MyNavView"
+                                  InitialTypeName="Windows.UI.Xaml.Controls.CaptureElement"
+                                  ChildChanged="MyNavView_OnChildChanged"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Margin="5"
+                      HorizontalScrollBarVisibility="Visible" Grid.Column="1">
+            <StackPanel>
+                <Button Content="Capture" Click="Button_Click" Height="50"/>
+                <ListView ItemsSource="{Binding imgCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                          Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="1">
+                                    <Image Source="{Binding}" MaxWidth="100" MaxHeight="100" Stretch="Fill"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                </ListView>                  
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
