@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfParallaxView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfParallaxView"
+        xmlns:UwpControl="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="UWP ParallaxView in WPF" Grid.Row="0" FontSize="45"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"/>
+
+        <UwpControl:WindowsXamlHost  InitialTypeName="Windows.UI.Xaml.Controls.Grid" Grid.Row="1"
+                                    ChildChanged="WindowsXamlHost_ChildChanged"/>        
+
+    </Grid>
+</Window>
