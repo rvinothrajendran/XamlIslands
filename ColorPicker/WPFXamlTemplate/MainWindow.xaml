@@ -1,0 +1,39 @@
+﻿<Window x:Class="WPFXamlTemplate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFXamlTemplate"
+        
+        xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="800">
+
+    <Window.Resources>
+        <local:UWPColorToWPFColor x:Key="ConvertColor"/>
+    </Window.Resources>
+    
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="UWP" FontSize="35"/>
+              <xamlHost:WindowsXamlHost x:Name="MyColorView"
+                                        Margin="10" 
+                                        InitialTypeName="Windows.UI.Xaml.Controls.ColorPicker"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="WPF" FontSize="35"/>
+            <Rectangle x:Name="MyRect1" Height="200" Width="200" Margin="10"
+                       Fill="{Binding uwpColorPicker,Converter={StaticResource ConvertColor}}"/>
+        </StackPanel>
+        
+
+    </Grid>
+</Window>
